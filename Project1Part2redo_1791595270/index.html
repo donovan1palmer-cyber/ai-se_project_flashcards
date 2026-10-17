@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="assets/vendor/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="Author" content="Donovan Palmer" />
+    <meta name="description" content="Study Aid Site" />
+    <meta
+      name="keywords"
+      content="study aids, flashcards, learning materials"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brain Fuel</title>
+  </head>
+  <body class="page">
+    <header class="header">
+      <h1 class="header__title">
+        <a class="header__link">Flash Cards</a>
+      </h1>
+      <nav class="nav">
+        <ul class="nav__links">
+          <li><a class="nav__link" href="#home">My Decks</a></li>
+          <li><a class="nav__link" href="#about">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="page__main-content">
+      <section id="home" class="view">
+        <section class="decks">
+          <h2 class="decks__title">My Decks</h2>
+          <ul class="decks__list">
+            <template id="deck-template">
+              <li class="deck deck_color_green">
+                <a class="deck__link" href="#"></a>
+                <h3 class="deck__title"></h3>
+                <div class="deck__row">
+                  <p class="deck__count"></p>
+                  <button
+                    class="deck__delete-btn"
+                    type="button"
+                    aria-label="Delete deck"
+                  >
+                    <img src="assets/images/delete.svg" alt="delete" />
+                  </button>
+                </div>
+              </li>
+            </template>
+            <li>
+              <button class="decks__new-deck-btn">+ New Deck</button>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section class="carousel" hidden>
+        <h2 class="carousel__title">HTML Tags Deck &middot; 1/10</h2>
+        <div class="carousel__row">
+          <button
+            class="carousel__btn carousel__btn_type_left"
+            type="button"
+            aria-label="show previous card"
+          ></button>
+          <div class="carousel__card">
+            <p class="carousel__card-text">&lt;body&gt;&lt;/body&gt;</p>
+          </div>
+          <button
+            class="carousel__btn carousel__btn_type_right"
+            type="button"
+            aria-label="show next card"
+          ></button>
+        </div>
+        <button
+          class="carousel__btn carousel__btn_type_flip"
+          type="button"
+          aria-label="flip card"
+        ></button>
+      </section>
+      <section id="about" class="view" hidden>
+        <h2>About</h2>
+      </section>
+      <section id="not-found" class="view" hidden>
+        <h2>404 Not Found</h2>
+        <p>The page you requested does not exist.</p>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__text">&copy; 2026 Donovan Palmer</p>
+    </footer>
+    <script type="module" src="assets/js/index.js"></script>
+  </body>
+</html>
