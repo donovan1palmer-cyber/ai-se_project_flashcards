@@ -81,38 +81,41 @@
           aria-label="flip card"
         ></button>
       </section>
-      <section id="deck-view" class="deck-view" hidden>
-        <div class="deck-view__header">
-          <h2 class="deck-view__title"></h2>
-          <a class="deck-view__practice-btn" href="#"> Practice </a>
-          <button class="deck-view__new-card-btn" type="button">
-            + New Card
-          </button>
-        </div>
-
-        <ul class="deck-view__cards">
-          <template id="card-template">
-            <li class="deck-view__card">
-              <p class="deck-view__card-text"></p>
-              <div class="deck-view__card-actions">
-                <button
-                  class="deck-view__flip-btn"
-                  type="button"
-                  aria-label="Show answer"
-                >
-                  <img src="assets/images/flip.svg" alt="" />
-                </button>
-                <button
-                  class="deck-view__delete-btn"
-                  type="button"
-                  aria-label="Delete card"
-                >
-                  <img src="assets/images/delete.svg" alt="" />
-                </button>
-              </div>
+      <section id="deck-view" class="view" hidden>
+        <section class="gallery">
+          <div class="gallery__header">
+            <h2 class="gallery__title"></h2>
+            <a class="gallery__practice-btn" href="#">Practice</a>
+          </div>
+          <ul class="deck-view__cards">
+            <template id="card-template">
+              <li class="card card_color_green">
+                <h3 class="card__title"></h3>
+                <div class="card__row">
+                  <button
+                    class="card__flip-btn"
+                    type="button"
+                    aria-label="Show answer"
+                  >
+                    <img src="assets/images/flip.svg" alt="" />
+                  </button>
+                  <button
+                    class="card__delete-btn"
+                    type="button"
+                    aria-label="Delete card"
+                  >
+                    <img src="assets/images/delete.svg" alt="" />
+                  </button>
+                </div>
+              </li>
+            </template>
+            <li>
+              <button class="gallery__new-card-btn" type="button">
+                + New Card
+              </button>
             </li>
-          </template>
-        </ul>
+          </ul>
+        </section>
       </section>
       <section id="about" class="view" hidden>
         <h2>About</h2>

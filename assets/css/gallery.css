@@ -3,6 +3,17 @@
   flex-direction: column;
 }
 
+.gallery__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.gallery__header .gallery__title {
+  margin-bottom: 0;
+}
+
 .gallery__title {
   font-weight: 700;
   font-size: 40px;
