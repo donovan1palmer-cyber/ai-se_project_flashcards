@@ -33,17 +33,17 @@
     </header>
     <main class="page__main-content">
       <section id="home" class="view">
-        <section class="decks">
-          <h2 class="decks__title">My Decks</h2>
-          <ul class="decks__list">
+        <section class="gallery">
+          <h2 class="gallery__title">My Decks</h2>
+          <ul class="gallery__list">
             <template id="deck-template">
-              <li class="deck deck_color_green">
-                <a class="deck__link" href="#"></a>
-                <h3 class="deck__title"></h3>
-                <div class="deck__row">
-                  <p class="deck__count"></p>
+              <li class="card card_color_green">
+                <a class="card__link" href="#"></a>
+                <h3 class="card__title"></h3>
+                <div class="card__row">
+                  <p class="card__count"></p>
                   <button
-                    class="deck__delete-btn"
+                    class="card__delete-btn"
                     type="button"
                     aria-label="Delete deck"
                   >
@@ -53,7 +53,7 @@
               </li>
             </template>
             <li>
-              <button class="decks__new-deck-btn">+ New Deck</button>
+              <button class="gallery__new-card-btn">+ New Deck</button>
             </li>
           </ul>
         </section>
