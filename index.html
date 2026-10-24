@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="assets/vendor/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -81,6 +80,39 @@
           type="button"
           aria-label="flip card"
         ></button>
+      </section>
+      <section id="deck-view" class="deck-view" hidden>
+        <div class="deck-view__header">
+          <h2 class="deck-view__title"></h2>
+          <a class="deck-view__practice-btn" href="#"> Practice </a>
+          <button class="deck-view__new-card-btn" type="button">
+            + New Card
+          </button>
+        </div>
+
+        <ul class="deck-view__cards">
+          <template id="card-template">
+            <li class="deck-view__card">
+              <p class="deck-view__card-text"></p>
+              <div class="deck-view__card-actions">
+                <button
+                  class="deck-view__flip-btn"
+                  type="button"
+                  aria-label="Show answer"
+                >
+                  <img src="assets/images/flip.svg" alt="" />
+                </button>
+                <button
+                  class="deck-view__delete-btn"
+                  type="button"
+                  aria-label="Delete card"
+                >
+                  <img src="assets/images/delete.svg" alt="" />
+                </button>
+              </div>
+            </li>
+          </template>
+        </ul>
       </section>
       <section id="about" class="view" hidden>
         <h2>About</h2>

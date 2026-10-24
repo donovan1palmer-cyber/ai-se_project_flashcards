@@ -33,8 +33,7 @@ function createDeckEl(item) {
 
   title.textContent = item.name;
   count.textContent = `${item.cards.length} cards`;
-  deckLink.href = `#carousel/${item.id}`;
-
+  deckLink.href = `#deck/${item.id}`;
   deleteButton.addEventListener("click", () => {
     deckCard.remove();
   });
