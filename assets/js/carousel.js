@@ -13,20 +13,31 @@ function renderCarouselView(deck) {
   let showingQuestion = true;
 
   function updateButtonState() {
-    const isFirstCard = currentIndex === 0;
-    const isLastCard = currentIndex === deck.cards.length - 1;
+    const hasCards = deck.cards.length > 0;
+    const isFirstCard = !hasCards || currentIndex === 0;
+    const isLastCard = !hasCards || currentIndex === deck.cards.length - 1;
 
     leftButton.disabled = isFirstCard;
     rightButton.disabled = isLastCard;
+    flipButton.disabled = !hasCards;
 
     leftButton.classList.toggle("carousel__btn_disabled", isFirstCard);
     rightButton.classList.toggle("carousel__btn_disabled", isLastCard);
+    flipButton.classList.toggle("carousel__btn_disabled", !hasCards);
   }
 
   function updateDisplay() {
     const currentCard = deck.cards[currentIndex];
 
     removeColorClasses(card);
+
+    if (!currentCard) {
+      cardText.textContent = "No cards in this deck.";
+      card.classList.add("carousel__card_color_white");
+      title.textContent = `${deck.name} Deck • 0/0`;
+      updateButtonState();
+      return;
+    }
 
     if (showingQuestion) {
       cardText.textContent = currentCard.question;
@@ -40,26 +51,26 @@ function renderCarouselView(deck) {
     updateButtonState();
   }
 
-  leftButton.addEventListener("click", () => {
+  leftButton.onclick = () => {
     if (currentIndex > 0) {
       currentIndex -= 1;
       showingQuestion = true;
       updateDisplay();
     }
-  });
+  };
 
-  rightButton.addEventListener("click", () => {
+  rightButton.onclick = () => {
     if (currentIndex < deck.cards.length - 1) {
       currentIndex += 1;
       showingQuestion = true;
       updateDisplay();
     }
-  });
+  };
 
-  flipButton.addEventListener("click", () => {
+  flipButton.onclick = () => {
     showingQuestion = !showingQuestion;
     updateDisplay();
-  });
+  };
 
   updateDisplay();
 }

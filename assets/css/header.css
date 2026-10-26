@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  white-space: nowrap;
 }
 
 .header__title {
@@ -17,4 +18,13 @@
 
 .header__link:hover {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    gap: 78px;
+  }
+  .header__link {
+    font-size: 20px;
+  }
 }

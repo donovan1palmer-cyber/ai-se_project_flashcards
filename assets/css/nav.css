@@ -12,8 +12,15 @@
 
 .nav__links {
   display: flex;
+  justify-content: flex-end;
   gap: 20px;
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .nav__links {
+    padding: 4px 6px;
+  }
 }

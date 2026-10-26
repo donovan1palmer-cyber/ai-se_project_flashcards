@@ -34,6 +34,10 @@
   background-color: #f5d770;
 }
 
+.card_color_white {
+  background-color: #fff;
+}
+
 .card__title {
   margin: 0;
   font-size: 24px;
@@ -60,7 +64,7 @@
   z-index: 1;
 }
 
-.card__delete-btn {
+.card__btn {
   width: 24px;
   height: 24px;
   background-color: transparent;
@@ -73,6 +77,21 @@
   z-index: 2;
 }
 
-.card__delete-btn:hover {
+.card__btn:hover {
   opacity: 100%;
+}
+
+@media screen and (max-width: 805px) {
+  .card {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 325 / 205;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .card {
+    width: 100%;
+    aspect-ratio: 325 / 205;
+  }
 }
