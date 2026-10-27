@@ -16,10 +16,13 @@
   margin-top: 0px;
 }
 
-.carousel__row {
-  display: flex;
-  align-items: center;
+.carousel__grid {
+  display: grid;
+  grid-template-areas:
+    "left-btn card right-btn"
+    "flip flip flip";
   justify-content: center;
+  align-items: center;
   gap: 20px;
   margin-bottom: 20px;
 }
@@ -33,6 +36,7 @@
   align-items: center;
   padding: 20px;
   border-radius: 20px;
+  grid-area: card;
 }
 
 .carousel__card-text {
@@ -70,14 +74,18 @@
 
 .carousel__btn_type_left {
   background-image: url(../images/left.svg);
+  grid-area: left-btn;
 }
 
 .carousel__btn_type_right {
   background-image: url(../images/right.svg);
+  grid-area: right-btn;
 }
 
 .carousel__btn_type_flip {
   background-image: url(../images/flip.svg);
+  grid-area: flip;
+  justify-self: center;
 }
 
 .carousel__card_color_green {

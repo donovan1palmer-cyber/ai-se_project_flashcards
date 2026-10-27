@@ -22,7 +22,7 @@
 
 @media screen and (max-width: 320px) {
   .header {
-    gap: 78px;
+    gap: 12px;
   }
   .header__link {
     font-size: 20px;

@@ -3,7 +3,7 @@
   .gallery__practice-btn {
     position: fixed;
     padding: 12px 20px;
-    bottom: 75px;
+    bottom: 39px;
     background-color: #1a1a1a;
     font-family: Inter;
     font-weight: 500;
@@ -19,11 +19,11 @@
     z-index: 2;
   }
   .gallery__new-card-btn {
-    width: calc(100% - 40px);
-    max-width: 353px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    box-sizing: border-box;
+    width: auto;
+    left: 20px;
+    right: 20px;
+    margin: 0;
   }
 
   .gallery__practice-btn {
@@ -44,8 +44,13 @@
   }
 
   .page {
-    padding-inline: 0px;
+    padding-inline: 20px;
   }
+
+  .page__main-content {
+    margin-top: 24px;
+  }
+
   .page::after {
     content: "";
     position: fixed;
@@ -62,13 +67,15 @@
     position: fixed;
     display: flex;
     bottom: 0;
-    width: 393px;
+    left: 20px;
+    right: 20px;
+    width: auto;
     height: 56px;
+    box-sizing: border-box;
     z-index: 2;
     align-items: center;
     justify-content: left;
     gap: 10px;
-    padding-left: 20px;
     padding-top: 20px;
   }
 }
