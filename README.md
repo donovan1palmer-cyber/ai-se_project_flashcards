@@ -8,9 +8,11 @@ Check out [this site](https://donovan1palmer-cyber.github.io/ai-se_project_flash
 
 ## Features
 
-- Add new flashcards
-- Flip cards to reveal the answer
-- Delete cards you no longer need
+- Browse flashcard decks in the gallery
+- Open a deck to view and manage its flashcards
+- Practice a deck in a carousel, flip cards to reveal answers, and navigate between cards
+- Responsive layout for desktop and mobile screens
+- Delete decks and flashcards
 
 ## Technologies Used
 
