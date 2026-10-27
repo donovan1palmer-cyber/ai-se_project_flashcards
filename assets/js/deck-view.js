@@ -4,8 +4,10 @@ const deckView = document.querySelector("#deck-view");
 const deckViewTitle = deckView.querySelector(".gallery__title");
 const deckViewList = deckView.querySelector(".gallery__list");
 const cardTemplate = document.querySelector("#card-template");
+const page = document.querySelector(".page");
 
 function renderDeckView(deck, updateDeckCount) {
+  page.classList.remove("page_no-mobile-bar");
   const colorName = hexToString(deck.color);
   const newCardButton = deckViewList.querySelector(
     ".gallery__new-card-btn",

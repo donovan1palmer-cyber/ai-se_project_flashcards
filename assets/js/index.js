@@ -11,6 +11,7 @@ const practiceButton = deckView.querySelector(".gallery__practice-btn");
 const aboutView = document.querySelector("#about");
 const notFoundView = document.querySelector("#not-found");
 const mainContent = document.querySelector(".page__main-content");
+const page = document.querySelector(".page");
 const carousel = document.querySelector(".carousel");
 let currentDeck = null;
 
@@ -85,6 +86,7 @@ function router() {
 
   carousel.hidden = true;
   mainContent.classList.remove("page__main-content_location_carousel");
+  page.classList.remove("page_no-mobile-bar");
 
   if (hash.startsWith("deck/")) {
     const deckId = hash.slice("deck/".length);

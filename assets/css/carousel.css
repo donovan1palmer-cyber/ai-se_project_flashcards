@@ -37,6 +37,7 @@
   padding: 20px;
   border-radius: 20px;
   grid-area: card;
+  box-sizing: border-box;
 }
 
 .carousel__card-text {
@@ -114,4 +115,26 @@
 
 .carousel__card_color_white {
   background-color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .carousel__card {
+    width: 353px;
+    height: 420px;
+  }
+
+  .carousel__grid {
+    display: grid;
+    grid-template-areas:
+      "card card card"
+      "left-btn flip right-btn";
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .carousel__btn_type_right {
+    justify-self: end;
+  }
 }

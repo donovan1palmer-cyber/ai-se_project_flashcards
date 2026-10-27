@@ -63,6 +63,14 @@
     z-index: 1;
   }
 
+  .page_no-mobile-bar::after {
+    display: none;
+  }
+
+  .page_no-mobile-bar .footer {
+    position: static;
+  }
+
   .footer {
     position: fixed;
     display: flex;

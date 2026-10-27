@@ -8,6 +8,8 @@ function renderCarouselView(deck) {
   const rightButton = document.querySelector(".carousel__btn_type_right");
   const flipButton = document.querySelector(".carousel__btn_type_flip");
   const colorName = hexToString(deck.color);
+  const page = document.querySelector(".page")
+  page.classList.add ("page_no-mobile-bar")
 
   let currentIndex = 0;
   let showingQuestion = true;
