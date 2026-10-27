@@ -6,6 +6,11 @@ My first project in TripleTen's AI-Assisted Software Engineering program. It inc
 
 Check out [this site](https://donovan1palmer-cyber.github.io/ai-se_project_flashcards/) on GitHub Pages.
 
+## Project Pitch Video
+
+Check out [this video](https://drive.google.com/file/d/1knMLXQYDIcIdh_zhYV6RvmnSjHp935M5/view?usp=sharing), where I describe my
+project and some challenges I faced while building it.
+
 ## Features
 
 - Browse flashcard decks in the gallery
