@@ -1,4 +1,5 @@
 .card {
+  z-index: 0;
   width: 325px;
   height: 205px;
   display: flex;
