@@ -127,12 +127,14 @@
 
 @media screen and (max-width: 600px) {
   .carousel__card {
-    width: 353px;
+    width: min(100%, 353px);
     height: 420px;
   }
 
   .carousel__grid {
     display: grid;
+    width: 100%;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
     grid-template-areas:
       "card card card"
       "left-btn flip right-btn";

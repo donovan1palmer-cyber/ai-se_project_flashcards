@@ -23,3 +23,9 @@
 .page__main-content_location_carousel {
   margin-top: 106px;
 }
+
+@media screen and (max-width: 320px) {
+  .page {
+    padding-inline: 20px;
+  }
+}

@@ -1,7 +1,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   white-space: nowrap;
 }
 
@@ -21,9 +21,6 @@
 }
 
 @media screen and (max-width: 320px) {
-  .header {
-    gap: 12px;
-  }
   .header__link {
     font-size: 20px;
   }
