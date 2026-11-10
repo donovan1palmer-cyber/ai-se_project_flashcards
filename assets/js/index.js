@@ -6,6 +6,7 @@ import { renderDeckView } from "./deck-view.js";
 const deckList = document.querySelector(".gallery__list");
 const deckTemplate = document.querySelector("#deck-template");
 const homeView = document.querySelector("#home");
+const newDeckButton = document.querySelector("#home .gallery__new-card-btn");
 const deckView = document.querySelector("#deck-view");
 const practiceButton = deckView.querySelector(".gallery__practice-btn");
 const aboutView = document.querySelector("#about");
@@ -14,10 +15,12 @@ const mainContent = document.querySelector(".page__main-content");
 const page = document.querySelector(".page");
 const carousel = document.querySelector(".carousel");
 let currentDeck = null;
+const newDeckView = document.querySelector("#new-deck-view");
 
 const routes = {
   home: homeView,
   "deck-view": deckView,
+  "new-deck": newDeckView,
   about: aboutView,
   "not-found": notFoundView,
 };
@@ -54,6 +57,10 @@ function renderDeckEl(item) {
 }
 
 decks.forEach(renderDeckEl);
+
+newDeckButton.addEventListener("click", () => {
+  window.location.hash = "#new-deck";
+});
 
 function updateDeckCount(deck) {
   const deckCard = [...deckList.querySelectorAll(".card")].find(
