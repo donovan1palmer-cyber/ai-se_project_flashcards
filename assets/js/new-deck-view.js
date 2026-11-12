@@ -1,3 +1,5 @@
+import { decks } from "./decks.js";
+
 const HEX_DIGITS = /^[0-9a-fA-F]{6}$/;
 
 /**
@@ -38,5 +40,24 @@ const textarea = form.querySelector("textarea");
 function disableSubmitBtn() {
   submitBtn.disabled = false;
 }
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+  const values = Object.fromEntries(formData);
+  const jsonData = JSON.parse(textarea.value);
+
+  const id = `${slugify(jsonData.name)}-${Date.now()}`;
+  const deck = {
+    id,
+    color: normalizeColor(values.color),
+    name: jsonData.name,
+    cards: jsonData.cards,
+  };
+
+  decks.push(deck);
+  window.location.hash = "deck/" + id;
+});
 
 export { disableSubmitBtn };
