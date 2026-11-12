@@ -2,6 +2,7 @@ import { decks, getDeckByID } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
+import { disableSubmitBtn } from "./new-deck-view.js";
 
 const deckList = document.querySelector(".gallery__list");
 const deckTemplate = document.querySelector("#deck-template");
@@ -129,6 +130,10 @@ function router() {
     }
 
     return;
+  }
+
+  if (hash === "new-deck") {
+    disableSubmitBtn();
   }
 
   const view = routes[hash] || routes["not-found"];
