@@ -27,6 +27,12 @@ const routes = {
   "not-found": notFoundView,
 };
 
+/**
+ * Clones the deck template and fills it with a deck's data and delete handler.
+ *
+ * @param {{_id: string, name: string, color: string, cards: Array<unknown>}} item
+ * @returns {DocumentFragment}
+ */
 function createDeckEl(item) {
   const deckEl = deckTemplate.content.cloneNode(true);
 
@@ -58,6 +64,12 @@ function createDeckEl(item) {
   return deckEl;
 }
 
+/**
+ * Renders a deck card at the start of the deck list.
+ *
+ * @param {{_id: string, name: string, color: string, cards: Array<unknown>}} item
+ * @returns {void}
+ */
 function renderDeckEl(item) {
   const deckElement = createDeckEl(item);
   deckList.prepend(deckElement);
@@ -67,6 +79,12 @@ newDeckButton.addEventListener("click", () => {
   window.location.hash = "#new-deck";
 });
 
+/**
+ * Updates the rendered deck card's flashcard count.
+ *
+ * @param {{_id: string, cards: Array<unknown>}} deck
+ * @returns {void}
+ */
 function updateDeckCount(deck) {
   const deckCard = [...deckList.querySelectorAll(".card")].find(
     (element) => element.dataset.deckId === deck._id,
@@ -86,6 +104,11 @@ practiceButton.addEventListener("click", (event) => {
   }
 });
 
+/**
+ * Displays the view requested by the current URL hash.
+ *
+ * @returns {void}
+ */
 function router() {
   const hash = window.location.hash.slice(1) || "home";
   currentDeck = null;

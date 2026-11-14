@@ -1,9 +1,10 @@
 const fetchedDecks = [];
 
 /**
+ * Finds a fetched deck by its database ID.
  *
  * @param {string} deckId
- * @returns {object|undefined}
+ * @returns {{_id: string, name: string, color: string, cards: Array<{question: string, answer: string}>}|undefined}
  */
 function getDeckByID(deckId) {
   return fetchedDecks.find((deck) => deck._id === deckId);
@@ -13,6 +14,7 @@ function getDeckByID(deckId) {
  * Removes the deck matching the given ID from fetchedDecks in place.
  *
  * @param {string} deckId
+ * @returns {void}
  */
 function removeDeckByID(deckId) {
   const index = fetchedDecks.findIndex((deck) => deck._id === deckId);

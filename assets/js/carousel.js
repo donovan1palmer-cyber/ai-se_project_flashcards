@@ -1,5 +1,11 @@
 import { hexToString, removeColorClasses } from "./colors.js";
 
+/**
+ * Displays a deck in the flashcard carousel and wires up its navigation controls.
+ *
+ * @param {{name: string, color: string, cards: Array<{question: string, answer: string}>}} deck
+ * @returns {void}
+ */
 function renderCarouselView(deck) {
   const title = document.querySelector(".carousel__title");
   const card = document.querySelector(".carousel__card");
@@ -14,6 +20,11 @@ function renderCarouselView(deck) {
   let currentIndex = 0;
   let showingQuestion = true;
 
+  /**
+   * Enables or disables carousel controls based on the current card position.
+   *
+   * @returns {void}
+   */
   function updateButtonState() {
     const hasCards = deck.cards.length > 0;
     const isFirstCard = !hasCards || currentIndex === 0;
@@ -28,6 +39,11 @@ function renderCarouselView(deck) {
     flipButton.classList.toggle("carousel__btn_disabled", !hasCards);
   }
 
+  /**
+   * Updates the visible card, carousel title, and control states.
+   *
+   * @returns {void}
+   */
   function updateDisplay() {
     const currentCard = deck.cards[currentIndex];
 

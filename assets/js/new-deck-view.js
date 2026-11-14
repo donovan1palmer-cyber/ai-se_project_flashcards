@@ -26,19 +26,43 @@ const errorModalEl = document.querySelector("#error-modal");
 const errorMessageEl = errorModalEl.querySelector(".modal__error");
 const closeModalBtnEl = errorModalEl.querySelector(".modal__close");
 
+/**
+ * Makes a modal visible.
+ *
+ * @param {HTMLElement} modal
+ * @returns {void}
+ */
 function openModal(modal) {
   modal.classList.add("modal_visible");
 }
 
+/**
+ * Hides a modal.
+ *
+ * @param {HTMLElement} modal
+ * @returns {void}
+ */
 function closeModal(modal) {
   modal.classList.remove("modal_visible");
 }
 
+/**
+ * Displays an error message in the error modal.
+ *
+ * @param {string} message
+ * @returns {void}
+ */
 function showError(message) {
   errorMessageEl.textContent = message;
   openModal(errorModalEl);
 }
 
+/**
+ * Checks that a deck name is a string between 2 and 80 characters long.
+ *
+ * @param {unknown} name
+ * @returns {string|null} The valid name, or null if it is invalid.
+ */
 function validateName(name) {
   if (typeof name != "string" || name.length < 2 || name.length > 80) {
     return null;
@@ -46,6 +70,12 @@ function validateName(name) {
   return name;
 }
 
+/**
+ * Parses JSON text, returning null when the text is invalid.
+ *
+ * @param {string} jsonString
+ * @returns {unknown|null}
+ */
 function parseJSON(jsonString) {
   try {
     return JSON.parse(jsonString);
@@ -58,6 +88,11 @@ closeModalBtnEl.addEventListener("click", function () {
   closeModal(errorModalEl);
 });
 
+/**
+ * Enables the new-deck submit button.
+ *
+ * @returns {void}
+ */
 function disableSubmitBtn() {
   submitBtn.disabled = false;
 }

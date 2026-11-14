@@ -6,6 +6,13 @@ const deckViewList = deckView.querySelector(".gallery__list");
 const cardTemplate = document.querySelector("#card-template");
 const page = document.querySelector(".page");
 
+/**
+ * Renders a deck's cards and attaches flip, delete, and count-update behavior.
+ *
+ * @param {{name: string, color: string, cards: Array<{question: string, answer: string}>}} deck
+ * @param {(deck: {name: string, color: string, cards: Array<{question: string, answer: string}>}) => void} updateDeckCount
+ * @returns {void}
+ */
 function renderDeckView(deck, updateDeckCount) {
   page.classList.remove("page_no-mobile-bar");
   const colorName = hexToString(deck.color);
