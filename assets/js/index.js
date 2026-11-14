@@ -1,8 +1,9 @@
-import { decks, getDeckByID } from "./decks.js";
+import { decks } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
-import { disableSubmitBtn } from "./new-deck-view.js";
+import { disableSubmitBtn, showError } from "./new-deck-view.js";
+import { getDecks } from "./api.js";
 
 const deckList = document.querySelector(".gallery__list");
 const deckTemplate = document.querySelector("#deck-template");
@@ -16,6 +17,7 @@ const mainContent = document.querySelector(".page__main-content");
 const page = document.querySelector(".page");
 const carousel = document.querySelector(".carousel");
 let currentDeck = null;
+let fetchedDecks = [];
 const newDeckView = document.querySelector("#new-deck-view");
 
 const routes = {
@@ -57,7 +59,12 @@ function renderDeckEl(item) {
   deckList.prepend(deckElement);
 }
 
-decks.forEach(renderDeckEl);
+function findDeckByID(deckId) {
+  return (
+    decks.find((deck) => deck.id === deckId) ||
+    fetchedDecks.find((deck) => deck.id === deckId)
+  );
+}
 
 newDeckButton.addEventListener("click", () => {
   window.location.hash = "#new-deck";
@@ -98,7 +105,7 @@ function router() {
 
   if (hash.startsWith("deck/")) {
     const deckId = hash.slice("deck/".length);
-    const deck = getDeckByID(deckId);
+    const deck = findDeckByID(deckId);
 
     if (deck) {
       currentDeck = deck;
@@ -116,7 +123,7 @@ function router() {
     mainContent.classList.add("page__main-content_location_carousel");
 
     const deckId = hash.split("/")[1];
-    const deck = getDeckByID(deckId);
+    const deck = findDeckByID(deckId);
 
     if (deck) {
       carousel.hidden = false;
@@ -144,4 +151,18 @@ function router() {
 }
 
 window.addEventListener("hashchange", router);
-router();
+
+window.addEventListener("DOMContentLoaded", () => {
+  getDecks()
+    .then((serverDecks) => {
+      fetchedDecks = serverDecks.map((deck) => ({
+        ...deck,
+        id: deck.id || deck._id,
+      }));
+      fetchedDecks.forEach(renderDeckEl);
+    })
+    .catch(showError)
+    .finally(() => {
+      router();
+    });
+});

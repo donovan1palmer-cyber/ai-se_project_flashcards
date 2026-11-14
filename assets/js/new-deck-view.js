@@ -121,4 +121,4 @@ form.addEventListener("submit", (e) => {
   window.location.hash = "deck/" + id;
 });
 
-export { disableSubmitBtn };
+export { disableSubmitBtn, showError };
