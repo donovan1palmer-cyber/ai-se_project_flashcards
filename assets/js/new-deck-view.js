@@ -37,6 +37,42 @@ const form = document.querySelector("#new-deck-form");
 const submitBtn = form.querySelector(".new-deck-view__submit-button");
 const textarea = form.querySelector("textarea");
 
+const errorModalEl = document.querySelector("#error-modal");
+const errorMessageEl = errorModalEl.querySelector(".modal__error");
+const closeModalBtnEl = errorModalEl.querySelector(".modal__close");
+
+function openModal(modal) {
+  modal.classList.add("modal_visible");
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal_visible");
+}
+
+function showError(message) {
+  errorMessageEl.textContent = message;
+  openModal(errorModalEl);
+}
+
+function validateName(name) {
+  if (typeof name != "string" || name.length < 2 || name.length > 80) {
+    return null;
+  }
+  return name;
+}
+
+function parseJSON(jsonString) {
+  try {
+    return JSON.parse(jsonString);
+  } catch (error) {
+    return null;
+  }
+}
+
+closeModalBtnEl.addEventListener("click", function () {
+  closeModal(errorModalEl);
+});
+
 function disableSubmitBtn() {
   submitBtn.disabled = false;
 }
@@ -46,7 +82,32 @@ form.addEventListener("submit", (e) => {
 
   const formData = new FormData(e.target);
   const values = Object.fromEntries(formData);
-  const jsonData = JSON.parse(textarea.value);
+  const jsonData = parseJSON(textarea.value);
+
+  if (jsonData === null) {
+    showError("Invalid JSON");
+    return;
+  }
+
+  if (validateName(jsonData.name) === null) {
+    showError("Invalid name");
+    return;
+  }
+
+  if (Array.isArray(jsonData.cards) === false) {
+    showError("Invalid Array");
+    return;
+  }
+
+  if (typeof jsonData.color != "string") {
+    showError("Invalid String");
+    return;
+  }
+
+  if (jsonData.color.toLowerCase() != values.color) {
+    showError("Invalid COlor");
+    return;
+  }
 
   const id = `${slugify(jsonData.name)}-${Date.now()}`;
   const deck = {
