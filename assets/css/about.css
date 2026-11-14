@@ -1,0 +1,7 @@
+.about__code {
+  overflow-x: auto;
+  padding: 16px 20px;
+  border-radius: 8px;
+  background-color: rgb(30 30 30);
+  color: rgb(220 220 220);
+}
