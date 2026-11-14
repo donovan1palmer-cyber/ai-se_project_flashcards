@@ -1,9 +1,9 @@
-import { decks } from "./decks.js";
+import { fetchedDecks, getDeckByID, removeDeckByID } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
 import { disableSubmitBtn, showError } from "./new-deck-view.js";
-import { getDecks } from "./api.js";
+import { deleteDeck, getDecks } from "./api.js";
 
 const deckList = document.querySelector(".gallery__list");
 const deckTemplate = document.querySelector("#deck-template");
@@ -17,7 +17,6 @@ const mainContent = document.querySelector(".page__main-content");
 const page = document.querySelector(".page");
 const carousel = document.querySelector(".carousel");
 let currentDeck = null;
-let fetchedDecks = [];
 const newDeckView = document.querySelector("#new-deck-view");
 
 const routes = {
@@ -43,12 +42,17 @@ function createDeckEl(item) {
     cardElement.classList.add(`card_color_${colorName}`);
   }
 
-  cardElement.dataset.deckId = item.id;
+  cardElement.dataset.deckId = item._id;
   title.textContent = item.name;
   count.textContent = `${item.cards.length} cards`;
-  deckLink.href = `#deck/${item.id}`;
+  deckLink.href = `#deck/${item._id}`;
   deleteButton.addEventListener("click", () => {
-    cardElement.remove();
+    deleteDeck(item._id)
+      .then(() => {
+        cardElement.remove();
+        removeDeckByID(item._id);
+      })
+      .catch(showError);
   });
 
   return deckEl;
@@ -59,20 +63,13 @@ function renderDeckEl(item) {
   deckList.prepend(deckElement);
 }
 
-function findDeckByID(deckId) {
-  return (
-    decks.find((deck) => deck.id === deckId) ||
-    fetchedDecks.find((deck) => deck.id === deckId)
-  );
-}
-
 newDeckButton.addEventListener("click", () => {
   window.location.hash = "#new-deck";
 });
 
 function updateDeckCount(deck) {
   const deckCard = [...deckList.querySelectorAll(".card")].find(
-    (element) => element.dataset.deckId === deck.id,
+    (element) => element.dataset.deckId === deck._id,
   );
 
   if (deckCard) {
@@ -85,7 +82,7 @@ practiceButton.addEventListener("click", (event) => {
   event.preventDefault();
 
   if (currentDeck) {
-    window.location.hash = `#carousel/${currentDeck.id}`;
+    window.location.hash = `#carousel/${currentDeck._id}`;
   }
 });
 
@@ -105,11 +102,11 @@ function router() {
 
   if (hash.startsWith("deck/")) {
     const deckId = hash.slice("deck/".length);
-    const deck = findDeckByID(deckId);
+    const deck = getDeckByID(deckId);
 
     if (deck) {
       currentDeck = deck;
-      practiceButton.href = `#carousel/${currentDeck.id}`;
+      practiceButton.href = `#carousel/${currentDeck._id}`;
       renderDeckView(deck, updateDeckCount);
       deckView.hidden = false;
     } else {
@@ -123,7 +120,7 @@ function router() {
     mainContent.classList.add("page__main-content_location_carousel");
 
     const deckId = hash.split("/")[1];
-    const deck = findDeckByID(deckId);
+    const deck = getDeckByID(deckId);
 
     if (deck) {
       carousel.hidden = false;
@@ -155,10 +152,7 @@ window.addEventListener("hashchange", router);
 window.addEventListener("DOMContentLoaded", () => {
   getDecks()
     .then((serverDecks) => {
-      fetchedDecks = serverDecks.map((deck) => ({
-        ...deck,
-        id: deck.id || deck._id,
-      }));
+      fetchedDecks.push(...serverDecks);
       fetchedDecks.forEach(renderDeckEl);
     })
     .catch(showError)
