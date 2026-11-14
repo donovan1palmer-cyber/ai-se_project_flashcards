@@ -1,22 +1,7 @@
 import { fetchedDecks } from "./decks.js";
+import { addDeck } from "./api.js";
 
 const HEX_DIGITS = /^[0-9a-fA-F]{6}$/;
-
-/**
- * Converts a string to a URL-safe slug: lowercase with any run of
- * non-alphanumeric characters replaced by a single hyphen, and no leading or
- * trailing hyphens.
- *
- * @param {string} str
- * @returns {string}
- */
-function slugify(str) {
-  return str
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
 
 /**
  * Returns a consistent lowercase hex color string with a leading "#".
@@ -104,21 +89,23 @@ form.addEventListener("submit", (e) => {
     return;
   }
 
-  if (jsonData.color.toLowerCase() != values.color) {
+  if (jsonData.color.toLowerCase() != values.color.toLowerCase()) {
     showError("Invalid COlor");
     return;
   }
 
-  const _id = `${slugify(jsonData.name)}-${Date.now()}`;
   const deck = {
-    _id,
     color: normalizeColor(values.color),
     name: jsonData.name,
     cards: jsonData.cards,
   };
 
-  fetchedDecks.push(deck);
-  window.location.hash = "deck/" + _id;
+  addDeck(deck)
+    .then((newDeck) => {
+      fetchedDecks.push(newDeck);
+      window.location.hash = "deck/" + newDeck._id;
+    })
+    .catch(showError);
 });
 
 export { disableSubmitBtn, showError };
