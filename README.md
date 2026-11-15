@@ -6,9 +6,15 @@ Brain Fuel is a flashcard study app built as my first project in TripleTen’s A
 
 [Open Brain Fuel on GitHub Pages](https://donovan1palmer-cyber.github.io/ai-se_project_flashcards/)
 
-## Project Pitch Video
+## Project Pitch Videos
 
-[Watch my project pitch video](https://drive.google.com/file/d/1knMLXQYDIcIdh_zhYV6RvmnSjHp935M5/view?usp=sharing) to learn about the project and some of the challenges I faced while building it.
+Check out these videos, where I describe my project
+and some challenges I faced while building it:
+
+- [First Video Pitch](https://drive.google.com/file/d/1knMLXQYDIcIdh_zhYV6RvmnSjHp935M5/view?usp=sharing)
+- [Second Video Pitch](https://drive.google.com/file/d/1HdQ8OVmyx6DhJqje35r2wn-AHxd9UY0u/view?usp=sharing)
+
+
 
 ## Features
 
