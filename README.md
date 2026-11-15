@@ -32,6 +32,10 @@ On the **New Deck** page, select a color and paste sample deck JSON in this form
     {
       "question": "What does HTML stand for?",
       "answer": "HyperText Markup Language"
+    },
+    {
+      "question": "What does CSS stand for?",
+      "answer": "Cascading Style Sheets"
     }
   ]
 }
