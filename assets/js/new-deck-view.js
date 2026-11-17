@@ -89,13 +89,15 @@ closeModalBtnEl.addEventListener("click", function () {
 });
 
 /**
- * Enables the new-deck submit button.
+ * Enables the submit button when the JSON field is not empty.
  *
  * @returns {void}
  */
-function disableSubmitBtn() {
-  submitBtn.disabled = false;
+function updateSubmitBtn() {
+  submitBtn.disabled = textarea.value.trim().length === 0;
 }
+
+textarea.addEventListener("input", updateSubmitBtn);
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -137,10 +139,13 @@ form.addEventListener("submit", (e) => {
 
   addDeck(deck)
     .then((newDeck) => {
-      fetchedDecks.push(newDeck);
+      fetchedDecks.push({
+        ...newDeck,
+        cards: newDeck.cards?.length > 0 ? newDeck.cards : jsonData.cards,
+      });
       window.location.hash = "deck/" + newDeck._id;
     })
     .catch(showError);
 });
 
-export { disableSubmitBtn, showError };
+export { updateSubmitBtn, showError };

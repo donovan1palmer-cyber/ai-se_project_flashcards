@@ -2,7 +2,7 @@ import { fetchedDecks, getDeckByID, removeDeckByID } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
-import { disableSubmitBtn, showError } from "./new-deck-view.js";
+import { updateSubmitBtn, showError } from "./new-deck-view.js";
 import { deleteDeck, getDecks } from "./api.js";
 
 const deckList = document.querySelector(".gallery__list");
@@ -122,7 +122,10 @@ function router() {
   carousel.hidden = true;
   mainContent.classList.remove("page__main-content_location_carousel");
   page.classList.remove("page_no-mobile-bar");
-
+  if (hash === "home") {
+    deckList.querySelectorAll(".card").forEach((deck) => deck.remove());
+    fetchedDecks.forEach(renderDeckEl);
+  }
   if (hash.startsWith("deck/")) {
     const deckId = hash.slice("deck/".length);
     const deck = getDeckByID(deckId);
@@ -160,7 +163,7 @@ function router() {
   }
 
   if (hash === "new-deck") {
-    disableSubmitBtn();
+    updateSubmitBtn();
   }
 
   const view = routes[hash] || routes["not-found"];
@@ -176,7 +179,6 @@ window.addEventListener("DOMContentLoaded", () => {
   getDecks()
     .then((serverDecks) => {
       fetchedDecks.push(...serverDecks);
-      fetchedDecks.forEach(renderDeckEl);
     })
     .catch(showError)
     .finally(() => {
